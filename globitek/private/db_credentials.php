@@ -1,6 +1,7 @@
 <?php
-  define("DB_SERVER", "localhost");
-  define("DB_USER", "root");
+  // Change DB_SERVER to local host if not using docker
+  define("DB_SERVER", "mysql");
+  define("DB_USER", "jason");
   define("DB_PASS", "codepath");
-  define("DB_NAME", "week4");
+  define("DB_NAME", "globitek");
 ?>
