@@ -7,6 +7,8 @@ $tested = isset($_GET['tested']) ? true : false;
 $fresh_start = time();
 $form_start = isset($_GET['start']) ? $_GET['start'] : time();
 
+$msg = '';
+
 if($tested) {
   $time_diff = $fresh_start - $form_start;
   $msg = "Test complete. ({$time_diff} seconds)<br />";
