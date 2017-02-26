@@ -20,13 +20,16 @@ if(is_post_request()) {
   if(isset($_POST['last_name'])) { $user['last_name'] = $_POST['last_name']; }
   if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
   if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
-
-  $result = insert_user($user);
-  if($result === true) {
-    $new_id = db_insert_id($db);
-    redirect_to('show.php?id=' . $new_id);
+  if(csrf_token_is_valid()) {
+      $result = insert_user($user);
+      if($result === true) {
+        $new_id = db_insert_id($db);
+        redirect_to('show.php?id=' . u($new_id));
+      } else {
+        $errors = $result;
+      }
   } else {
-    $errors = $result;
+      $errors[] = "Error: Invalid request.";
   }
 }
 ?>
@@ -51,6 +54,7 @@ if(is_post_request()) {
     <input type="text" name="email" value="<?php echo h($user['email']); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Create"  />
+    <?php echo csrf_token_tag(); ?>
   </form>
 
 </div>

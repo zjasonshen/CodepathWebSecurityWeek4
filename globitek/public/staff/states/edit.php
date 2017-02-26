@@ -19,12 +19,15 @@ if(is_post_request()) {
   if(isset($_POST['name'])) { $state['name'] = $_POST['name']; }
   if(isset($_POST['code'])) { $state['code'] = $_POST['code']; }
   if(isset($_POST['country_id'])) { $state['country_id'] = $_POST['country_id']; }
-
-  $result = update_state($state);
-  if($result === true) {
-    redirect_to('show.php?id=' . $state['id']);
+  if(csrf_token_is_valid()) {
+      $result = update_state($state);
+      if($result === true) {
+        redirect_to('show.php?id=' . u($state['id']));
+      } else {
+        $errors = $result;
+      }
   } else {
-    $errors = $result;
+      $errors[] = "Error: Invalid request.";
   }
 }
 ?>
@@ -32,7 +35,7 @@ if(is_post_request()) {
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <div id="main-content">
-  <a href="show.php?id=<?php echo h($state['id']); ?>">Back to State</a><br />
+  <a href="show.php?id=<?php echo h(u($state['id'])); ?>">Back to State</a><br />
 
   <h1>Edit State: <?php echo h($state['name']); ?></h1>
 
@@ -47,6 +50,7 @@ if(is_post_request()) {
     <input type="text" name="country_id" value="<?php echo h($state['country_id']); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Update"  />
+    <?php echo csrf_token_tag(); ?>
   </form>
 
 </div>

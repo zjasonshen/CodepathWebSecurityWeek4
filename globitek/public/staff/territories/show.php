@@ -15,7 +15,7 @@ $territory_result = find_territory_by_id($id);
 $territory = db_fetch_assoc($territory_result);
 
 $state_id = $territory['state_id'];
-$state_result = find_territory_by_id($state_id);
+$state_result = find_state_by_id($state_id);
 $state = db_fetch_assoc($state_result);
 ?>
 

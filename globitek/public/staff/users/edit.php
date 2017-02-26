@@ -21,12 +21,15 @@ if(is_post_request()) {
   if(isset($_POST['username'])) { $user['username'] = $_POST['username']; }
   if(isset($_POST['email'])) { $user['email'] = $_POST['email']; }
 
-
-  $result = update_user($user);
-  if($result === true) {
-    redirect_to('show.php?id=' . $user['id']);
+  if(csrf_token_is_valid()) {
+      $result = update_user($user);
+      if($result === true) {
+        redirect_to('show.php?id=' . u($user['id']));
+      } else {
+        $errors = $result;
+      }
   } else {
-    $errors = $result;
+      $errors[] = "Error: Invalid request.";
   }
 }
 ?>
@@ -51,6 +54,7 @@ if(is_post_request()) {
     <input type="text" name="email" value="<?php echo h($user['email']); ?>" /><br />
     <br />
     <input type="submit" name="submit" value="Update"  />
+    <?php echo csrf_token_tag(); ?>
   </form>
 
 </div>

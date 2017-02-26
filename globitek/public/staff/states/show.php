@@ -23,7 +23,7 @@ $country = db_fetch_assoc($country_result);
 <?php include(SHARED_PATH . '/staff_header.php'); ?>
 
 <div id="main-content">
-  <a href="../countries/show.php?id=<?php echo h($state['country_id']); ?>">Back to Country: <?php echo h($country['name']); ?></a><br />
+  <a href="../countries/show.php?id=<?php echo h(u($state['country_id'])); ?>">Back to Country: <?php echo h($country['name']); ?></a><br />
 
   <h1>State: <?php echo h($state['name']); ?></h1>
 
