@@ -1,0 +1,36 @@
+version: '2'
+
+volumes:
+    database_data:
+        driver: local
+
+services:
+    nginx:
+        image: nginx:latest
+        ports:
+            - 8080:80
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        volumes_from:
+            - php
+
+    php:
+        build: ./docker/php/
+        expose:
+            - 9000
+        volumes:
+            - .:/var/www/html
+
+    mysql:
+        image: mysql:latest
+        expose:
+            - 3306
+        volumes:
+            - database_data:/var/lib/mysql
+        volumes_from:
+            - php
+        environment:
+            MYSQL_ROOT_PASSWORD: codepath
+            MYSQL_DATABASE: globitek
+            MYSQL_USER: jason
+            MYSQL_PASSWORD: codepath
