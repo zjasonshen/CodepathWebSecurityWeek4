@@ -75,11 +75,34 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-The security prinicipal that the login of the staff pages doesn't follow is to never trust users.
+The security principle that the login of the staff pages doesn't follow is to never trust users.
 The reason that is a major security flaw is that any user has the ability to modify/delete any entry in the database. 
 In order for the system to be more secure users should have limited write/modify access but still maintain full read access.
 Restrict the users to only be able to modify/delete the entries they created. Have a root account that has access to modify
 user accounts. Users shouldn't be able to modify other users.
+
+Docker instructions:
+
+1\. Install Docker.
+
+2\. In the root of this folder enter the following commands
+
+```bash
+docker-compose -d up
+```
+This command will setup the download and setup the containers needed for this project.
+```bash
+docker-compose exec mysql /bin/bash
+```
+SSH into mysql server to load the database file
+```bash
+mysql -u jason -p globitek < /var/www/html/globitek_week4.sql
+```
+You will be prompted for a password which is "codepath"
+
+3\. Now you can open a browser and view the website at:
+
+    localhost:8080/globitek/public/index.php
 
 ## License
 
