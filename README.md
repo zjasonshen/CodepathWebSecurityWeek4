@@ -58,18 +58,18 @@ The following advanced user stories are optional:
 
 * [X]  Bonus Objective 4: Sessions are valid only if user-agent string matches previous value.
 
-* [ ]  Advanced Objective: Set/Get Signed-Encrypted Cookie
-  * [ ]  Create "public/set\_secret\_cookie.php".
-  * [ ]  Create "public/get\_secret\_cookie.php".
-  * [ ]  Encrypt and sign cookie before storing.
-  * [ ]  Verify cookie is signed correctly or show error message.
-  * [ ]  Decrypt cookie.
+* [X]  Advanced Objective: Set/Get Signed-Encrypted Cookie
+  * [X]  Create "public/set\_secret\_cookie.php".
+  * [X]  Create "public/get\_secret\_cookie.php".
+  * [X]  Encrypt and sign cookie before storing.
+  * [X]  Verify cookie is signed correctly or show error message.
+  * [X]  Decrypt cookie.
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/WBZ6GYz.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

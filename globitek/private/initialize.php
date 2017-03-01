@@ -5,7 +5,6 @@
 ob_start();
 
 // Enable sessions
-// TODO add configurations
 session_start([
   'cookie_lifetime' => 86400,
   'cookie_httponly' => 1,
@@ -36,6 +35,7 @@ require_once('query_functions.php');
 require_once('validation_functions.php');
 require_once('auth_functions.php');
 require_once('csrf_functions.php');
+require_once('encrypt_sign_functions.php');
 
 $db = db_connect();
 
